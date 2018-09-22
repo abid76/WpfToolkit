@@ -4,6 +4,7 @@
 // All other rights reserved.
 
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Automation.Peers;
@@ -255,19 +256,24 @@ namespace System.Windows.Controls
             switch (e.Key)
             {
                 case Key.Enter:
+                    OnSelectionChanged(this, new SelectionChangedEventArgs(Selector.SelectionChangedEvent, new List<object>(), new List<object> { SelectedItem }));
                     OnCommit();
                     e.Handled = true;
                     break;
 
                 case Key.Up:
+                    IgnoringSelectionChanged = true;
                     SelectedIndexDecrement();
+                    IgnoringSelectionChanged = false;
                     e.Handled = true;
                     break;
 
                 case Key.Down:
                     if ((ModifierKeys.Alt & Keyboard.Modifiers) == ModifierKeys.None)
                     {
+                        IgnoringSelectionChanged = true;
                         SelectedIndexIncrement();
+                        IgnoringSelectionChanged = false;
                         e.Handled = true;
                     }
                     break;
