@@ -917,6 +917,33 @@
             <param name="d">AutoCompleteBox that changed its MinimumPrefixLength.</param>
             <param name="e">Event arguments.</param>
         </member>
+        <member name="P:System.Windows.Controls.AutoCompleteBox.TrimText">
+            <summary>
+            Gets or sets if the entered text should be trimmed before the
+            <see cref="T:System.Windows.Controls.AutoCompleteBox" /> displays
+            possible matches.
+            </summary>
+            <value>
+            If the entered text should be trimmed. The default is true.
+            </value>
+        </member>
+        <member name="F:System.Windows.Controls.AutoCompleteBox.TrimTextProperty">
+            <summary>
+            Identifies the
+            <see cref="P:System.Windows.Controls.AutoCompleteBox.MinimumPrefixLength" />
+            dependency property.
+            </summary>
+            <value>The identifier for the
+            <see cref="P:System.Windows.Controls.AutoCompleteBox.MinimumPrefixLength" />
+            dependency property.</value>
+        </member>
+        <member name="M:System.Windows.Controls.AutoCompleteBox.OnTrimTextPropertyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+            MinimumPrefixLengthProperty property changed handler.
+            </summary>
+            <param name="d">AutoCompleteBox that changed its MinimumPrefixLength.</param>
+            <param name="e">Event arguments.</param>
+        </member>
         <member name="P:System.Windows.Controls.AutoCompleteBox.MinimumPopulateDelay">
             <summary>
             Gets or sets the minimum delay, in milliseconds, after text is typed

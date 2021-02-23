@@ -222,6 +222,50 @@ namespace System.Windows.Controls
         }
         #endregion public int MinimumPrefixLength
 
+        #region public bool TrimText
+
+        /// <summary>
+        /// Gets or sets if the entered text should be trimmed before the
+        /// <see cref="T:System.Windows.Controls.AutoCompleteBox" /> displays
+        /// possible matches.
+        /// </summary>
+        /// <value>
+        /// If the entered text should be trimmed. The default is true.
+        /// </value>
+        public bool TrimText
+        {
+            get { return (bool)GetValue(TrimTextProperty); }
+            set { SetValue(TrimTextProperty, value); }
+        }
+
+        /// <summary>
+        /// Identifies the
+        /// <see cref="P:System.Windows.Controls.AutoCompleteBox.MinimumPrefixLength" />
+        /// dependency property.
+        /// </summary>
+        /// <value>The identifier for the
+        /// <see cref="P:System.Windows.Controls.AutoCompleteBox.MinimumPrefixLength" />
+        /// dependency property.</value>
+        public static readonly DependencyProperty TrimTextProperty =
+            DependencyProperty.Register(
+                "TrimText",
+                typeof(bool),
+                typeof(AutoCompleteBox),
+                new PropertyMetadata(true, OnTrimTextPropertyChanged));
+
+        /// <summary>
+        /// MinimumPrefixLengthProperty property changed handler.
+        /// </summary>
+        /// <param name="d">AutoCompleteBox that changed its MinimumPrefixLength.</param>
+        /// <param name="e">Event arguments.</param>
+        [SuppressMessage("Microsoft.Usage", "CA2208:InstantiateArgumentExceptionsCorrectly", Justification = "MinimumPrefixLength is the name of the actual dependency property.")]
+        private static void OnTrimTextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            // bool newValue = (bool)e.NewValue;
+            // do nothing
+        }
+        #endregion public bool TrimText
+
         #region public int MinimumPopulateDelay
         /// <summary>
         /// Gets or sets the minimum delay, in milliseconds, after text is typed
@@ -2195,6 +2239,11 @@ namespace System.Windows.Controls
             if (newText == null)
             {
                 newText = string.Empty;
+            }
+
+            if (TrimText)
+            {
+                newText = newText.Trim();
             }
 
             // The TextBox.TextChanged event was not firing immediately and 
